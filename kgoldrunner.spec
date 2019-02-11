@@ -5,34 +5,36 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kgoldrunner
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/kgoldrunner-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/kgoldrunner-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/kgoldrunner-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/kgoldrunner-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/kgoldrunner-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/kgoldrunner-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
-Requires: kgoldrunner-bin
-Requires: kgoldrunner-data
-Requires: kgoldrunner-license
-Requires: kgoldrunner-locales
+Requires: kgoldrunner-bin = %{version}-%{release}
+Requires: kgoldrunner-data = %{version}-%{release}
+Requires: kgoldrunner-license = %{version}-%{release}
+Requires: kgoldrunner-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libkdegames-dev
-BuildRequires : phonon-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
-Ian Wadham <iandw.au@gmail.com>
-Marco KrÃ¼ger
-----------------------------------------------------------------------
+THEMES IN KGOLDRUNNER
+For each pictorial theme in KGoldrunner there is a "*.desktop" file in the area
+kdegames/kgoldrunner/themes in the KDE SVN source-code repository, or in the
+area $HOME/.kde/share/apps/kgoldrunner/themes, the user's local data area.  If
+two *.desktop files have the same name, the one in the local area takes
+precedence.
 
 %package bin
 Summary: bin components for the kgoldrunner package.
 Group: Binaries
-Requires: kgoldrunner-data
-Requires: kgoldrunner-license
+Requires: kgoldrunner-data = %{version}-%{release}
+Requires: kgoldrunner-license = %{version}-%{release}
 
 %description bin
 bin components for the kgoldrunner package.
@@ -71,26 +73,26 @@ locales components for the kgoldrunner package.
 
 
 %prep
-%setup -q -n kgoldrunner-18.08.0
+%setup -q -n kgoldrunner-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535428881
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549867104
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535428881
+export SOURCE_DATE_EPOCH=1549867104
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kgoldrunner
-cp COPYING %{buildroot}/usr/share/doc/kgoldrunner/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/kgoldrunner/COPYING.DOC
+mkdir -p %{buildroot}/usr/share/package-licenses/kgoldrunner
+cp COPYING %{buildroot}/usr/share/package-licenses/kgoldrunner/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/kgoldrunner/COPYING.DOC
 pushd clr-build
 %make_install
 popd
@@ -179,6 +181,7 @@ popd
 /usr/share/kgoldrunner/themes/nostalgia/set.svg
 /usr/share/kxmlgui5/kgoldrunner/kgoldrunnerui.rc
 /usr/share/metainfo/org.kde.kgoldrunner.appdata.xml
+/usr/share/xdg/kgoldrunner.categories
 /usr/share/xdg/kgoldrunner.knsrc
 
 %files doc
@@ -223,9 +226,9 @@ popd
 /usr/share/doc/HTML/uk/kgoldrunner/tute008.png
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kgoldrunner/COPYING
-/usr/share/doc/kgoldrunner/COPYING.DOC
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kgoldrunner/COPYING
+/usr/share/package-licenses/kgoldrunner/COPYING.DOC
 
 %files locales -f kgoldrunner.lang
 %defattr(-,root,root,-)
