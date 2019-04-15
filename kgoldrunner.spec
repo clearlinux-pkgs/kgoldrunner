@@ -6,11 +6,11 @@
 #
 Name     : kgoldrunner
 Version  : 18.12.3
-Release  : 5
+Release  : 6
 URL      : https://download.kde.org/stable/applications/18.12.3/src/kgoldrunner-18.12.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.3/src/kgoldrunner-18.12.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.3/src/kgoldrunner-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : A game of action and puzzle solving
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
 Requires: kgoldrunner-bin = %{version}-%{release}
@@ -20,12 +20,16 @@ Requires: kgoldrunner-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libkdegames-dev
+BuildRequires : phonon-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-Ian Wadham <iandw.au@gmail.com>
-Marco KrÃ¼ger
-----------------------------------------------------------------------
+THEMES IN KGOLDRUNNER
+For each pictorial theme in KGoldrunner there is a "*.desktop" file in the area
+kdegames/kgoldrunner/themes in the KDE SVN source-code repository, or in the
+area $HOME/.kde/share/apps/kgoldrunner/themes, the user's local data area.  If
+two *.desktop files have the same name, the one in the local area takes
+precedence.
 
 %package bin
 Summary: bin components for the kgoldrunner package.
@@ -77,16 +81,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551998250
+export SOURCE_DATE_EPOCH=1555331260
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551998250
+export SOURCE_DATE_EPOCH=1555331260
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kgoldrunner
 cp COPYING %{buildroot}/usr/share/package-licenses/kgoldrunner/COPYING
