@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kgoldrunner
-Version  : 19.08.2
-Release  : 14
-URL      : https://download.kde.org/stable/applications/19.08.2/src/kgoldrunner-19.08.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.2/src/kgoldrunner-19.08.2.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.2/src/kgoldrunner-19.08.2.tar.xz.sig
+Version  : 19.08.3
+Release  : 15
+URL      : https://download.kde.org/stable/applications/19.08.3/src/kgoldrunner-19.08.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.3/src/kgoldrunner-19.08.3.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.3/src/kgoldrunner-19.08.3.tar.xz.sig
 Summary  : A game of action and puzzle solving
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -73,14 +73,14 @@ locales components for the kgoldrunner package.
 
 
 %prep
-%setup -q -n kgoldrunner-19.08.2
+%setup -q -n kgoldrunner-19.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570743474
+export SOURCE_DATE_EPOCH=1573168737
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -97,11 +97,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570743474
+export SOURCE_DATE_EPOCH=1573168737
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kgoldrunner
-cp COPYING %{buildroot}/usr/share/package-licenses/kgoldrunner/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/package-licenses/kgoldrunner/COPYING.DOC
+cp %{_builddir}/kgoldrunner-19.08.3/COPYING %{buildroot}/usr/share/package-licenses/kgoldrunner/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
+cp %{_builddir}/kgoldrunner-19.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/kgoldrunner/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 pushd clr-build
 %make_install
 popd
@@ -236,8 +236,8 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kgoldrunner/COPYING
-/usr/share/package-licenses/kgoldrunner/COPYING.DOC
+/usr/share/package-licenses/kgoldrunner/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
+/usr/share/package-licenses/kgoldrunner/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 
 %files locales -f kgoldrunner.lang
 %defattr(-,root,root,-)
