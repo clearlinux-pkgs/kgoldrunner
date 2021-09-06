@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kgoldrunner
-Version  : 21.04.2
-Release  : 30
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/kgoldrunner-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/kgoldrunner-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/kgoldrunner-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 31
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/kgoldrunner-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/kgoldrunner-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/kgoldrunner-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -71,35 +71,35 @@ locales components for the kgoldrunner package.
 
 
 %prep
-%setup -q -n kgoldrunner-21.04.2
-cd %{_builddir}/kgoldrunner-21.04.2
+%setup -q -n kgoldrunner-21.08.1
+cd %{_builddir}/kgoldrunner-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623384001
+export SOURCE_DATE_EPOCH=1630911945
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623384001
+export SOURCE_DATE_EPOCH=1630911945
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kgoldrunner
-cp %{_builddir}/kgoldrunner-21.04.2/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kgoldrunner/7697008f58568e61e7598e796eafc2a997503fde
-cp %{_builddir}/kgoldrunner-21.04.2/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kgoldrunner/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/kgoldrunner-21.08.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kgoldrunner/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/kgoldrunner-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kgoldrunner/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 pushd clr-build
 %make_install
 popd
@@ -125,6 +125,7 @@ popd
 /usr/share/kgoldrunner/system/game_GMEP.txt
 /usr/share/kgoldrunner/system/game_GMGR.txt
 /usr/share/kgoldrunner/system/game_GRII.txt
+/usr/share/kgoldrunner/system/game_GotD.txt
 /usr/share/kgoldrunner/system/game_MAZ.txt
 /usr/share/kgoldrunner/system/game_blb.txt
 /usr/share/kgoldrunner/system/game_cnt.txt
@@ -145,6 +146,7 @@ popd
 /usr/share/kgoldrunner/system/rec_GMGR.txt
 /usr/share/kgoldrunner/system/rec_GRII.txt
 /usr/share/kgoldrunner/system/rec_demo.txt
+/usr/share/kgoldrunner/system/sol_GotD.txt
 /usr/share/kgoldrunner/system/sol_blb.txt
 /usr/share/kgoldrunner/system/sol_fd.txt
 /usr/share/kgoldrunner/system/sol_kgr.txt
@@ -192,6 +194,10 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
+/usr/share/doc/HTML/ca/kgoldrunner/index.cache.bz2
+/usr/share/doc/HTML/ca/kgoldrunner/index.docbook
+/usr/share/doc/HTML/ca/kgoldrunner/select.png
+/usr/share/doc/HTML/ca/kgoldrunner/tute008.png
 /usr/share/doc/HTML/de/kgoldrunner/editbar.png
 /usr/share/doc/HTML/de/kgoldrunner/index.cache.bz2
 /usr/share/doc/HTML/de/kgoldrunner/index.docbook
